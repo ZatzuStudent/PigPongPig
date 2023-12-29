@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy5t640h2dl8k"]
+
+[ext_resource type="Texture2D" uid="uid://iluykj0w4che" path="res://Assets/Background.png" id="1_03n8g"]
+[ext_resource type="Texture2D" uid="uid://db1on7btg1j2v" path="res://Assets/Table.png" id="2_rv2hd"]
+[ext_resource type="Texture2D" uid="uid://qijbd7b1qxy3" path="res://Assets/Wolf dude_1.png" id="3_2fo0t"]
+[ext_resource type="PackedScene" uid="uid://mu8ukq3owfly" path="res://Scenes/balls.tscn" id="4_a74eo"]
+[ext_resource type="PackedScene" uid="uid://d1ujehnajda3m" path="res://Scenes/player.tscn" id="5_f4ds6"]
+[ext_resource type="PackedScene" uid="uid://bcybq84ixpm73" path="res://Scenes/opponent.tscn" id="5_wv73e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbc5"]
+size = Vector2(155, 493)
+
+[node name="Main" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Node"]
+z_index = -10
+texture = ExtResource("1_03n8g")
+
+[node name="Table" type="Sprite2D" parent="Node"]
+z_index = -1
+texture = ExtResource("2_rv2hd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("5_f4ds6")]
+z_index = 1
+position = Vector2(331, 293)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(566, 355)
+shape = SubResource("RectangleShape2D_smbc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-606, 355)
+shape = SubResource("RectangleShape2D_smbc5")
+
+[node name="Opponent" parent="." instance=ExtResource("5_wv73e")]
+position = Vector2(-39, -275)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(-13, -397)
+texture = ExtResource("3_2fo0t")
+
+[node name="Balls" parent="." instance=ExtResource("4_a74eo")]
+position = Vector2(-167, -21)

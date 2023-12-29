@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcybq84ixpm73"]
+
+[ext_resource type="Script" path="res://Scripts/opponent.gd" id="1_acw7b"]
+[ext_resource type="Texture2D" uid="uid://bvy35wo83j5sn" path="res://Assets/Padle.png" id="2_4ioi5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yljg"]
+size = Vector2(112.581, 5.51699)
+
+[node name="Opponent" type="CharacterBody2D"]
+script = ExtResource("1_acw7b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ioi5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.70975, 0)
+shape = SubResource("RectangleShape2D_1yljg")

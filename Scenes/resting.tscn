@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq3gyn5r3mckf"]
+
+[ext_resource type="Script" path="res://Scripts/resting.gd" id="1_mew2n"]
+[ext_resource type="Texture2D" uid="uid://du655myabsvpy" path="res://Assets/Pigs_2.png" id="2_qe2cc"]
+[ext_resource type="Texture2D" uid="uid://bk37n35ignl2m" path="res://Assets/Pigs_4.png" id="3_780gw"]
+[ext_resource type="Texture2D" uid="uid://dyx4k3cx7lie8" path="res://Assets/Pigs_0.png" id="4_e10u6"]
+
+[node name="Resting" type="Node"]
+script = ExtResource("1_mew2n")
+
+[node name="PigA" type="Sprite2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PigA"]
+position = Vector2(530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_qe2cc")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="PigA"]
+position = Vector2(-530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_780gw")
+
+[node name="PigB" type="Sprite2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="PigB"]
+position = Vector2(530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_780gw")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="PigB"]
+position = Vector2(-530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_e10u6")
+
+[node name="PigC" type="Sprite2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PigC"]
+position = Vector2(530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_e10u6")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="PigC"]
+position = Vector2(-530, 370)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_qe2cc")

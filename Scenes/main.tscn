@@ -1,0 +1,93 @@
+[gd_scene load_steps=15 format=3 uid="uid://dy5t640h2dl8k"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_olpp3"]
+[ext_resource type="Texture2D" uid="uid://iluykj0w4che" path="res://Assets/Background.png" id="2_d5h18"]
+[ext_resource type="Texture2D" uid="uid://db1on7btg1j2v" path="res://Assets/Table.png" id="3_vxgnq"]
+[ext_resource type="PackedScene" uid="uid://bfh4bqv3mheq7" path="res://Scenes/balls.tscn" id="4_a74eo"]
+[ext_resource type="Texture2D" uid="uid://bvqipqbco575" path="res://Assets/Net.png" id="4_hds8d"]
+[ext_resource type="PackedScene" uid="uid://d1ujehnajda3m" path="res://Scenes/player.tscn" id="5_f4ds6"]
+[ext_resource type="PackedScene" uid="uid://bcybq84ixpm73" path="res://Scenes/opponent.tscn" id="5_wv73e"]
+[ext_resource type="Script" path="res://Scripts/Net.gd" id="6_fbqxo"]
+[ext_resource type="Texture2D" uid="uid://qijbd7b1qxy3" path="res://Assets/Wolf dude_1.png" id="8_ywvso"]
+[ext_resource type="PackedScene" uid="uid://bq3gyn5r3mckf" path="res://Scenes/resting.tscn" id="10_llv1o"]
+[ext_resource type="PackedScene" uid="uid://b1cadr2e3rd5w" path="res://Scenes/canvas_layer.tscn" id="11_wgv00"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smbc5"]
+size = Vector2(9.1635, 1021.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0dvb"]
+size = Vector2(870, 57.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wtlvy"]
+size = Vector2(1213, 11)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_olpp3")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="Others" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Others"]
+
+[node name="Wolf" type="Sprite2D" parent="Others"]
+z_index = -3
+position = Vector2(-14, -407)
+texture = ExtResource("8_ywvso")
+
+[node name="Background" type="Sprite2D" parent="Others"]
+z_index = -10
+texture = ExtResource("2_d5h18")
+
+[node name="Table" type="Sprite2D" parent="Others"]
+z_index = -2
+position = Vector2(13, 0)
+texture = ExtResource("3_vxgnq")
+
+[node name="Net" type="Sprite2D" parent="Others"]
+position = Vector2(13, 0)
+texture = ExtResource("4_hds8d")
+script = ExtResource("6_fbqxo")
+
+[node name="Resting2" parent="Others" instance=ExtResource("10_llv1o")]
+
+[node name="Player" parent="." instance=ExtResource("5_f4ds6")]
+z_index = 1
+position = Vector2(0, 290)
+
+[node name="Colliers" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Colliers"]
+position = Vector2(487, 120)
+rotation = -0.610865
+shape = SubResource("RectangleShape2D_smbc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliers"]
+position = Vector2(-478, 115)
+rotation = 0.610865
+shape = SubResource("RectangleShape2D_smbc5")
+
+[node name="Opponent" parent="." instance=ExtResource("5_wv73e")]
+position = Vector2(-133, -310)
+
+[node name="Balls" parent="." instance=ExtResource("4_a74eo")]
+position = Vector2(-92, -212)
+
+[node name="Win" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
+position = Vector2(-8, -345)
+shape = SubResource("RectangleShape2D_x0dvb")
+
+[node name="Lose" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lose"]
+position = Vector2(0, 340)
+shape = SubResource("RectangleShape2D_wtlvy")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("11_wgv00")]
+
+[connection signal="ready" from="." to="Balls" method="_on_main_ready"]
+[connection signal="body_entered" from="Win" to="." method="_on_win_body_entered"]
+[connection signal="body_entered" from="Lose" to="." method="_on_lose_body_entered"]
